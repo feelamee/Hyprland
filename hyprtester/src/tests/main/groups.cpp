@@ -493,7 +493,7 @@ TEST_CASE(groups_disable_when_only) {
     }
 
     OK(getFromSocket("/dispatch hl.dsp.group.toggle()"));
-    OK(getFromSocket("/eval hl.config({ group = { groupbar = { disable_when_only = true } } })"));
+    OK(getFromSocket("r/eval hl.config({ group = { groupbar = { disable_when_only = true } } })"));
 
     // check kittyA properties. groupbar should be hidden due to disable_when_only
     NLog::log("{}Check kittyA dimensions", Colors::YELLOW);
@@ -531,7 +531,7 @@ TEST_CASE(groups_disable_when_only) {
         EXPECT_COUNT_STRING(str, "size: 1876,1036", 1);
     }
 
-    OK(getFromSocket("/eval hl.config({ group = { groupbar = { disable_when_only = false } } })"));
+    OK(getFromSocket("r/eval hl.config({ group = { groupbar = { disable_when_only = false } } })"));
 
     // check kittyA properties. groupbar should be visible due to disable_when_only == false
     NLog::log("{}Check kittyA dimensions", Colors::YELLOW);

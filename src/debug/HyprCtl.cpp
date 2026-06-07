@@ -2133,6 +2133,11 @@ std::string CHyprCtl::getReply(std::string request) {
             if (!ws)
                 continue;
 
+            for (auto const& w : g_pCompositor->m_windows) {
+                if (w->m_workspace == ws && w->m_isMapped && w->acceptsInput()) {
+                    w->uncacheWindowDecos();
+                }
+            }
             ws->updateWindows();
             ws->updateWindowData();
             ws->updateWindowDecos();
